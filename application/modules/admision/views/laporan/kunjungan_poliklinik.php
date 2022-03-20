@@ -70,7 +70,7 @@
                                         <td><?= $key + 1 ?></td>
                                         <td>POLI <?= $poli ?></td>
                                         <?php foreach(range(1, 12) as $month): ?>
-                                            <td><?= rand(100, 500) ?></td>
+                                            <td>0</td>
                                         <?php endforeach; ?>
                                     </tr>
                                 <?php endforeach; ?>
