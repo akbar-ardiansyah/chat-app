@@ -44,7 +44,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($pasiens as $key => $pasien): ?>
+                                <?php foreach ($pasiens as $key => $pasien) : ?>
                                     <tr>
                                         <td><?= $key + 1 ?></td>
                                         <td><?= $pasien->nama_pasien ?></td>
@@ -68,9 +68,9 @@
 <script>
     document.onreadystatechange = () => {
         if (document.readyState === "complete") {
-            
+
             $('#data_pasien').DataTable();
-            
+
         }
     }
 </script>
