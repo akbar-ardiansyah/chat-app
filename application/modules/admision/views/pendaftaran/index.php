@@ -2,6 +2,7 @@
     .form-group {
         margin-bottom: 0px !important;
     }
+
     select.form-control {
         color: inherit !important;
     }
@@ -14,7 +15,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Formulir Pendaftaran Pasien Berobat</h4>
                         <hr>
-                        
+
                         <form class="form-sample" id="form_pendaftaran" action="<?= current_url() ?>" method="POST">
                             <p class="card-description">
                                 Biodata Pasien
@@ -93,7 +94,7 @@
                                         <div class="col-sm-8">
                                             <select name="id_asuransi" id="id_asuransi" class="form-control" required>
                                                 <option value="">Pilih Asuransi</option>
-                                                <?php foreach($asuransi as $asr): ?>
+                                                <?php foreach ($asuransi as $asr) : ?>
                                                     <option value="<?= $asr->id_asuransi ?>"><?= $asr->nama_asuransi ?></option>
                                                 <?php endforeach; ?>
                                             </select>
@@ -112,7 +113,7 @@
                                         <div class="col-sm-8">
                                             <select name="id_poliklinik" id="id_poliklinik" class="form-control" required>
                                                 <option value="">Pilih Poliklinik</option>
-                                                <?php foreach($poliklinik as $poli): ?>
+                                                <?php foreach ($poliklinik as $poli) : ?>
                                                     <option value="<?= $poli->id_poliklinik ?>"><?= $poli->nama_poliklinik ?></option>
                                                 <?php endforeach; ?>
                                             </select>
@@ -132,7 +133,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <div class="row">
@@ -160,33 +161,35 @@
 <script>
     document.onreadystatechange = () => {
         if (document.readyState === "complete") {
-            
+
             $('#btn-save').removeAttr('disabled');
 
-            $('#id_poliklinik').change(function(){
+            $('#id_poliklinik').change(function() {
                 var id_poliklinik = $(this).val();
-                
+
                 $('#id_dokter').html('<option value="">Mohon tunggu...</option>');
 
-                $.post(site_url + 'admision/pendaftaran/fetch_dokter', {id_poliklinik}, function(response){
+                $.post(site_url + 'admision/pendaftaran/fetch_dokter', {
+                    id_poliklinik
+                }, function(response) {
                     $('#id_dokter').html(response);
                 });
             });
 
-            $('#form_pendaftaran').submit(function(e){
-                e.preventDefault(); 
-
+            $('#form_pendaftaran').submit(function(e) {
+                e.preventDefault();
                 $.ajax({
                     type: $(this).attr('method'),
-                    data: $(this).serializ(),
+                    data: $(this).serialize(),
+                    // url: "<?= current_url() ?>admision/pendaftaran/tambah_pasien",
                     dataType: 'json',
-                    success: function(response){
+                    success: function(response) {
                         alert(response.message);
                         if (response.status == true) {
                             $('input, select').val('').trigger('change');
                         }
                     },
-                    error: function(error){
+                    error: function(error) {
                         alert('Internal server error');
                     }
                 });

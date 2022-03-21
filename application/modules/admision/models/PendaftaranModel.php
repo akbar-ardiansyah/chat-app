@@ -5,7 +5,7 @@ class PendaftaranModel extends CI_Model
     public function asuransi()
     {
         return $this->db->get('tbl_asuransi')->result();
-    }   
+    }
 
     public function poliklinik()
     {
@@ -21,7 +21,7 @@ class PendaftaranModel extends CI_Model
 
     public function insert($data)
     {
-        $this->db-insert('tbl_pendaftarann', $data);
+        $this->db->insert('tbl_pendaftaran', $data);
 
         return $this->db->insert_id();
     }

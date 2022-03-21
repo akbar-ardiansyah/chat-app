@@ -37,8 +37,7 @@ CREATE TABLE `tbl_dokter` (
   `id_poliklinik` int(10) unsigned DEFAULT NULL,
   `nama_dokter` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`id_dokter`),
-  KEY `id_poliklinik` (`id_poliklinik`),
-  CONSTRAINT `tbl_dokter_ibfk_1` FOREIGN KEY (`id_poliklinik`) REFERENCES `tbl_poliklinik` (`id_poliklinik`) ON UPDATE CASCADE
+  KEY `id_poliklinik` (`id_poliklinik`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `tbl_dokter` */
