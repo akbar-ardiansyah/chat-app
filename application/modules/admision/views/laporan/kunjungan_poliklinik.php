@@ -1,5 +1,4 @@
 <style>
-
     table tr th {
         text-align: center;
     }
@@ -7,7 +6,6 @@
     select.form-control {
         color: inherit !important;
     }
-
 </style>
 <div class="content-wrapper">
     <div class="row">
@@ -27,7 +25,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <select id="tahun" name="tahun" class="form-control">
-                                                <?php foreach(range(date('Y'), date('Y') - 10) as $tahun): ?>
+                                                <?php foreach (range(date('Y'), date('Y') - 10) as $tahun) : ?>
                                                     <option <?= $tahun == $selected_tahun ? 'selected' : '' ?> value="<?= $tahun ?>"><?= $tahun ?></option>
                                                 <?php endforeach; ?>
                                             </select>
@@ -55,23 +53,32 @@
                                     <th colspan="12">BULAN</th>
                                 </tr>
                                 <tr>
-                                    <?php foreach(range(1, 12) as $bulan): ?>
+                                    <?php foreach (range(1, 12) as $bulan) : ?>
                                         <th><?= date('M', strtotime("2022-$bulan-01")) ?></th>
                                     <?php endforeach; ?>
                                 </tr>
-                                
+
                             </thead>
 
                             <tbody>
-                                <?php $nama_poli = ['ANAK', 'PENYAKIT DALAM', 'BEDAH', 'JANTUNG', 'MATA'] ?>
-
-                                <?php foreach($nama_poli as $key => $poli): ?>
+                                <?php
+                                $key = 1;
+                                foreach ($kunjungan->result_array() as  $poli) : ?>
                                     <tr>
-                                        <td><?= $key + 1 ?></td>
-                                        <td>POLI <?= $poli ?></td>
-                                        <?php foreach(range(1, 12) as $month): ?>
-                                            <td>0</td>
-                                        <?php endforeach; ?>
+                                        <td><?= $key++ ?></td>
+                                        <td>POLI <?= $poli['nama_poliklinik'] ?></td>
+                                        <td><?= $poli['jan'] ?></td>
+                                        <td><?= $poli['feb'] ?></td>
+                                        <td><?= $poli['mar'] ?></td>
+                                        <td><?= $poli['apr'] ?></td>
+                                        <td><?= $poli['mai'] ?></td>
+                                        <td><?= $poli['jul'] ?></td>
+                                        <td><?= $poli['jun'] ?></td>
+                                        <td><?= $poli['agt'] ?></td>
+                                        <td><?= $poli['sep'] ?></td>
+                                        <td><?= $poli['okt'] ?></td>
+                                        <td><?= $poli['nov'] ?></td>
+                                        <td><?= $poli['des'] ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
